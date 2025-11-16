@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-top">
+                <h1 class="app-title">🌤️ Weather Forecast</h1>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        🌙
+                    </button>
+                    <button class="unit-toggle" id="unitToggle" aria-label="Toggle temperature unit">
+                        °C
+                    </button>
+                </div>
+            </div>
+
+            <div class="header-middle">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        class="search-input" 
+                        placeholder="Search city..."
+                        aria-label="Search for a city"
+                    >
+                    <button class="search-btn" id="searchBtn" aria-label="Search">
+                        🔍
+                    </button>
+                </div>
+                <button class="location-btn" id="locationBtn" aria-label="Use current location">
+                    📍
+                </button>
+            </div>
+
+            <!-- Quick access cities -->
+            <div class="quick-cities">
+                <button class="city-btn" data-lat="20.2961" data-lon="85.8245">Bhubaneswar</button>
+                <button class="city-btn" data-lat="19.0760" data-lon="72.8777">Mumbai</button>
+                <button class="city-btn" data-lat="28.6139" data-lon="77.2090">Delhi</button>
+                <button class="city-btn" data-lat="12.9716" data-lon="77.5946">Bangalore</button>
+                <button class="city-btn" data-lat="22.5726" data-lon="88.3639">Kolkata</button>
+            </div>
+        </header>
+
+        <!-- Loading Spinner -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Loading weather data...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message" id="errorMessage"></div>
+
+        <!-- Main Weather Display -->
+        <main class="main-content" id="mainContent">
+            <!-- Current Weather Hero Section -->
+            <section class="current-weather">
+                <div class="location-info">
+                    <h2 class="location-name" id="locationName">Loading...</h2>
+                    <p class="current-date" id="currentDate"></p>
+                </div>
+
+                <div class="weather-display">
+                    <div class="weather-icon-large" id="weatherIconLarge">☀️</div>
+                    <div class="temp-display">
+                        <span class="temperature" id="temperature">--</span>
+                        <span class="temp-unit" id="tempUnit">°C</span>
+                    </div>
+                </div>
+
+                <div class="weather-description">
+                    <p class="condition" id="weatherCondition">Clear Sky</p>
+                    <p class="feels-like">Feels like <span id="feelsLike">--</span>°</p>
+                </div>
+            </section>
+
+            <!-- Current Weather Details -->
+            <section class="weather-details">
+                <div class="detail-card">
+                    <div class="detail-icon">💧</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Humidity</p>
+                        <p class="detail-value" id="humidity">--%</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">💨</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Wind Speed</p>
+                        <p class="detail-value" id="windSpeed">-- km/h</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🎯</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Pressure</p>
+                        <p class="detail-value" id="pressure">-- hPa</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">☀️</div>
+                    <div class="detail-content">
+                        <p class="detail-label">UV Index</p>
+                        <p class="detail-value" id="uvIndex">--</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">👁️</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Visibility</p>
+                        <p class="detail-value" id="visibility">-- km</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🌅</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Sunrise</p>
+                        <p class="detail-value" id="sunrise">--:--</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">🌇</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Sunset</p>
+                        <p class="detail-value" id="sunset">--:--</p>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-icon">☁️</div>
+                    <div class="detail-content">
+                        <p class="detail-label">Cloud Cover</p>
+                        <p class="detail-value" id="cloudCover">--%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hourly Forecast -->
+            <section class="forecast-section">
+                <h3 class="section-title">24-Hour Forecast</h3>
+                <div class="hourly-forecast" id="hourlyForecast">
+                    <!-- Hourly cards will be generated here -->
+                </div>
+            </section>
+
+            <!-- 5-Day Forecast -->
+            <section class="forecast-section">
+                <h3 class="section-title">5-Day Forecast</h3>
+                <div class="daily-forecast" id="dailyForecast">
+                    <!-- Daily cards will be generated here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
