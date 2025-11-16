@@ -145,9 +145,11 @@ function requestUserLocation() {
                 reverseGeocode(latitude, longitude);
             },
             (error) => {
-                console.log('Geolocation error:', error);
-                fetchWeatherData(); // Use default location
-            }
+    appState.currentLocation = { lat: 20.2961, lon: 85.8245, name: 'Bhubaneswar', country: 'India' };
+    updateLocationInfo();
+    fetchWeatherData();
+}
+
         );
     } else {
         fetchWeatherData(); // Use default location
@@ -162,8 +164,9 @@ async function reverseGeocode(lat, lon) {
         const data = await response.json();
         if (data.results && data.results.length > 0) {
             const location = data.results[0];
-            appState.currentLocation.name = location.name;
-            appState.currentLocation.country = location.country;
+            appState.currentLocation.name = location.name || 'Your Location';
+            appState.currentLocation.country = location.country || 'India';
+
             elements.locationName.textContent = `${location.name}, ${location.country}`;
         }
     } catch (error) {
